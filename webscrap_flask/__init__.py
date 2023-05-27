@@ -22,6 +22,10 @@ def create_app(test_config=None) -> t.Any:
         os.makedirs(app.instance_path)
     except OSError:
         pass
+    
+    from . import db
+    db.init_app(app)
+
 
     # a simple page that says hello NOTE: to be removed
     @app.route('/hello')
