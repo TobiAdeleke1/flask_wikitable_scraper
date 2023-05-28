@@ -26,6 +26,9 @@ def create_app(test_config=None) -> t.Any:
     from . import db
     db.init_app(app)
 
+    from . import user_auth
+    app.register_blueprint(user_auth.bp)
+
 
     # a simple page that says hello NOTE: to be removed
     @app.route('/hello')
