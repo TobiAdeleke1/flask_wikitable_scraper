@@ -14,6 +14,7 @@ CREATE TABLE post_urls(
    user_id INTEGER NOT NULL,
    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
    title TEXT NOT NULL,
+   url TEXT NOT NULL,
    FOREIGN KEY (user_id) REFERENCES user(id)
 
 );
