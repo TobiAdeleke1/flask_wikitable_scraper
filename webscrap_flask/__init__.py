@@ -29,6 +29,8 @@ def create_app(test_config=None) -> t.Any:
     from . import user_auth
     app.register_blueprint(user_auth.bp)
 
+    from . import crud
+    app.register_blueprint(crud.bp)
 
     # a simple page that says hello NOTE: to be removed
     @app.route('/hello')
