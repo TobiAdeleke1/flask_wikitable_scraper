@@ -59,7 +59,7 @@ def login():
         if error is None:
             session.clear()
             session['user_id'] = db_user['id'] 
-            return redirect(url_for('index'))
+            return redirect(url_for('scrap.index'))
         
         flash(error)
 
@@ -79,8 +79,8 @@ def load_current_user():
 
 @bp.route('/logout')
 def logout():
-    session.clear
-    return redirect(url_for('index'))
+    session.clear()
+    return redirect(url_for('scrap.index'))
 
 def login_required(view):
     @functools.wraps(view)

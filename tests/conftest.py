@@ -3,10 +3,10 @@ import tempfile
 
 import pytest
 from webscrap_flask import create_app
-from webscrap_flask import get_db, init_db
+from webscrap_flask.db import get_db, init_db
 
-with open(os.path.join(os.path.dirname(__file__), 'data.sql')) as f:
-     _data_sql = f.read().decode('utf8')
+with open(os.path.join(os.path.dirname(__file__), 'data.sql'), 'rb') as f:
+     _data_sql = f.read().decode('utf-8')
 
 @pytest.fixture
 def app():
@@ -33,20 +33,20 @@ def client(app):
 def runner(app):
      return app.test_cli_runner()
 
-class AuthAction(object):
+class AuthActions(object):
      def __init__(self, client):
           self._client = client
      
-     def login(self, username='testone', password='testone'):
+     def login(self, username='test', password='test'):
           return self._client.post(
-               'auth/login',
+               '/auth/login',
                data={'username':username, 'password':password}
           )
      
      def logout(self):
-          return self._client.get('auth/logout')
+          return self._client.get('/auth/logout')
 
 
 @pytest.fixture
 def auth(client):
-     return AuthAction(client)
+     return AuthActions(client)

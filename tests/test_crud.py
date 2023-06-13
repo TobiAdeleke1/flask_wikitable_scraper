@@ -7,12 +7,13 @@ def test_index(client, auth):
     assert b'Log In' in response.data
     assert b'Register' in response.data
 
-    auth.login()
+    auth.login('test','test')
     response = client.get('/')
+    # All items from html
     assert b'Log Out' in response.data
-    assert b'testone title' in response.data
-    assert b'by testone on 2018-01-01' in response.data
-    assert b'testone\nurl' in response.data
+    assert b'test title' in response.data
+    assert b'by test on 2018-01-01' in response.data
+    assert b'test\nurl' in response.data
     assert b'Edit' in response.data
     assert b'href="/1/update"' in response.data
 
@@ -22,32 +23,36 @@ def test_index(client, auth):
                           '/1/delete'))
 def test_login_required(client, path):
     response = client.post(path)
-    assert response.headers['Location'] == 'auth/login'
+    assert response.headers['Location'] == '/auth/login'
 
 def test_author_required(app, client, auth):
+    # change the post author to another user
     with app.app_context():
         db = get_db()
-        db.execute("UPDATE post_url SET user_id=2 WHERE id=1")
+        db.execute("UPDATE post_urls SET user_id=2 WHERE id=1")
         db.commit()
-
-    auth.login()
+    
+    # current user can't modify other user's post
+    auth.login('test','test')
     assert client.post('/1/update').status_code == 403 #forbidden
     assert client.post('/1/delete').status_code == 403
-    assert b'href="/1/update"' not in  client.get('/').data
+    print( client.get('/').data)
+    # current user doesn't see edit link
+    assert b'href="/1/update"' not in client.get('/').data
 
 @pytest.mark.parametrize('path', (
         '/2/update',
         '/2/delete',
     ))
 def test_post_exists(client, auth, path):
-    auth.login()
+    auth.login('test','test')
     response = client.post(path)
     assert response.status_code == 404 
 
 def test_create(client, auth, app):
-    auth.login()
+    auth.login('test','test')
     assert client.get('/create').status_code == 200
-
+    auth.login('test','test')
     client.post(
         '/create',
         data={'title':'New Link', 'url':'https://new-link'}

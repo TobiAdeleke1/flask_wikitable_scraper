@@ -1,4 +1,4 @@
-{% extends base.html %}
+{% extends 'base.html' %}
 
 {% block header%}
    <h1> {% block title %} Previous Urls {% endblock %}</h1>
@@ -15,15 +15,15 @@
 		<header>
 			<div>
 			<h1>{{ url_post['title'] }}</h1>
-			<div class="about"> by {{ url_post['username']}} on {{ url_post['create_at'].strftime('%y-%m-%d')}} </div>
+			<div class="about"> by {{ url_post['username']}} on {{ url_post['created_at'].strftime('%Y-%m-%d')}} </div>
 			</div>
-			{% comment %} this might need changing to user_id {% endcomment %}
-			{% if g.user.get('id') == url_post['id'] %}
+			
+			{% if g.user['id'] == url_post['user_id'] %}
 			<a class"action" href="{{ url_for('scrap.update', id=url_post['id'])}}"> Edit</a>
 			<a class="action" href="{{ url_for('scrap.delete', id=url_post['id'])}}"> Delete </a>
 			{% endif %}
 		</header>
-		<p class="url_body"> {{ url_post['url'}} </p>
+		<p class="url_body"> {{ url_post['url']}} </p>
 		</article>
 	    {% if not loop.last %} 
 	     <hr>
