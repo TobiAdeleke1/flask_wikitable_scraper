@@ -31,6 +31,7 @@ def create_app(test_config=None) -> t.Any:
 
     from . import crud
     app.register_blueprint(crud.bp)
+    app.add_url_rule('/', endpoint='index')
 
     # a simple page that says hello NOTE: to be removed
     @app.route('/hello')

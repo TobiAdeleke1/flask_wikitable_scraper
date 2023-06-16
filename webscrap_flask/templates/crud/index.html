@@ -20,7 +20,6 @@
 			
 			{% if g.user['id'] == url_post['user_id'] %}
 			<a class"action" href="{{ url_for('scrap.update', id=url_post['id'])}}"> Edit</a>
-			<a class="action" href="{{ url_for('scrap.delete', id=url_post['id'])}}"> Delete </a>
 			{% endif %}
 		</header>
 		<p class="url_body"> {{ url_post['url']}} </p>

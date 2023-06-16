@@ -27,7 +27,7 @@ def index():
 def create():
     if request.method == 'POST':
         title = request.form.get('title')
-        url_link = request.form.get('url')
+        url_link = request.form.get('url_post')
         error = None
         
 
@@ -36,15 +36,13 @@ def create():
         
         if error is not None:
             flash(error)
-            print('ERROR !!!', 'here')
         else:
-            print('ERROR !!!', 'here2')
             db = get_db()
             db.execute('''INSERT INTO post_urls (title, url, user_id) 
                            values (?, ?, ?)
                         ''',(title, url_link, g.user['id']))
             db.commit()
-            redirect(url_for('scrap.index'))
+            return redirect(url_for('scrap.index'))
                 
     return render_template('crud/create.html')
 
@@ -75,7 +73,7 @@ def update(id):
     print("post",post)
     if request.method == 'POST':
         title = request.form.get('title')
-        url_post = request.form.get('url')
+        url_post = request.form.get('url_post')
 
         error = None
         
