@@ -9,11 +9,11 @@
     <article class="post">
         <header>
             <div>
-            <h1>{{ file_post['title'] }}</h1>
+            <h1>{{ file_post['document_name'] }}</h1>
             <div class="about"> by {{ file_post['username']}}  on {{file_post['created_at'].strftime('%Y-%m-%d')}} </div>
-            </div>    
+            </div> 
+
         </header>
-        <p class="url_body"> {{ file_post['url']}} </p>
         {% if g.user['id'] == file_post['user_id'] %}
         <a  class"action" href="{{ url_for('scrap.download_file', id=file_post['id'])}}"> 
              <input type="submit" value="Download">
