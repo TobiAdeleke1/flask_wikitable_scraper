@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block header%}
+{% block title %} <h1>Download Url Table </h1> {% endblock %}
+{% endblock %}
+
+{% block content %}
+   {% for file_post in file_lists %}
+    <article class="post">
+        <header>
+            <div>
+            <h1>{{ file_post['title'] }}</h1>
+            <div class="about"> by {{ file_post['username']}}  on {{file_post['created_at'].strftime('%Y-%m-%d')}} </div>
+            </div>    
+        </header>
+        <p class="url_body"> {{ file_post['url']}} </p>
+        {% if g.user['id'] == file_post['user_id'] %}
+        <a  class"action" href="{{ url_for('scrap.download_file', id=file_post['id'])}}"> 
+             <input type="submit" value="Download">
+        </a>
+
+       <form action="{{ url_for('scrap.doc_delete', id=file_post['id']) }}" method="post">
+        <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete');">
+       </form>
+        {% endif %}
+    </article>
+    {% if not loop.last %} 
+       <hr>
+    {% endif %}
+    {% endfor %}
+
+{% endblock%}

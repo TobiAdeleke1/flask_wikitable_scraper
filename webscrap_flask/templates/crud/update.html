@@ -11,13 +11,15 @@
    <input id="title" name="title" 
    value="{{request.form.get('title') or post['title']}}" required>
    <label for="url_post"> URL Body </label>
-   <textarea id="url_post" name="url_post">
+   <input id="url_post" name="url_post" type="text">
    {{request.form.get('url') or post['url']}} 
-   </textarea>
+   </input>
    <input type="submit" value="Save">
 
 </form>
 <form action="{{ url_for('scrap.delete', id=post['id']) }}" method="post">
  <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete');">
 </form>
+
+
 {% endblock %}

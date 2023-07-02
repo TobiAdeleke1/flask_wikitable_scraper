@@ -9,10 +9,12 @@
      <label for="title"> Title  </label>
      <input type="text" name="title" id="title" value="{{ request.form.get('title')}}" required>
       <label for="url_post"> Website Link </label>    
-      <textarea name="url_post"  id="url_post">
+      <input name="url_post"  id="url_post" type="text">
         {{request.form.get('url')}}
-      </textarea>
+       </input>
      <input type="submit" value="Submit">
    </form>
 
+ 
+   
 {% endblock %}
