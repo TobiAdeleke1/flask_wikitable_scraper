@@ -60,7 +60,6 @@ def test_create(client, auth, app):
 
     with app.app_context():
         db = get_db()
-        # count = db.execute("SELECT COUNT(id) FROM post_urls").fetchone()
         count = db.execute("SELECT COUNT(id) FROM post_urls").fetchone()[0]
         assert count == 2
 

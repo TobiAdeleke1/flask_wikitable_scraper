@@ -76,26 +76,7 @@ def file_lists():
     '''
      ).fetchall()
     
-    # file_lists = db.execute(
-	# '''SELECT 
-    #      d.id, 
-    #      p.title, 
-    #      p.url,
-    #      d.document_url,
-    #      d.created_at,
-    #      d.user_id,
-    #      u.username
-	#    FROM 
-    #    document_urls d
-    #    INNER JOIN post_urls p on d.user_id = p.user_id
-    #    INNER JOIN user u ON d.user_id = u.id
-	#   ORDER BY d.created_at DESC;
-    # '''
-    #  ).fetchall()
-    
-    for it in file_lists:
-        print (dict(it))
-    
+
     return render_template('crud/download.html', file_lists=file_lists)
 
 
