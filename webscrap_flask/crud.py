@@ -93,8 +93,8 @@ def file_lists():
     # '''
     #  ).fetchall()
     
-    for it in file_lists:
-        print (dict(it))
+    # for it in file_lists:
+    #     print (dict(it))
     
     return render_template('crud/download.html', file_lists=file_lists)
 
