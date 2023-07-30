@@ -16,6 +16,6 @@ docs/
 build/
 *.egg-info/
 *.in
-
+*.toml
 
 *.xlsx
