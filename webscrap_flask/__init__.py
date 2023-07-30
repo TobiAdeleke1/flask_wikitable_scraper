@@ -35,16 +35,7 @@ def create_app(test_config=None) -> t.Any:
     app.register_blueprint(crud.bp)
     app.add_url_rule('/', endpoint='index')
 
-    # from . import wiki_scap
-    # app.register_blueprint(wiki_scap.bp)
-
-
-    # storage_path = 
     UPLOAD_FOLDER =  os.path.join(os.getcwd(),'webscrap_flask/utils/storage/sheets')
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-    # a simple page that says hello NOTE: to be removed
-    @app.route('/hello')
-    def hello():
-        return 'Hello, World!'
      
     return app

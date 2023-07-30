@@ -44,9 +44,9 @@ def create():
                         ''',(title, url_post, g.user['id']))
             db.commit()
             
-            # going into feature
+    
             filename, storage_url = main_run(url_post,  current_app.config['UPLOAD_FOLDER'])
-            if '.xlsx' not in storage_url: # if the file was create
+            if '.xlsx' not in storage_url: 
                 flash(storage_url)
                 return redirect(url_for('scrap.index'))
             else:
@@ -75,27 +75,7 @@ def file_lists():
 	  ORDER BY d.created_at DESC;
     '''
      ).fetchall()
-    
-    # file_lists = db.execute(
-	# '''SELECT 
-    #      d.id, 
-    #      p.title, 
-    #      p.url,
-    #      d.document_url,
-    #      d.created_at,
-    #      d.user_id,
-    #      u.username
-	#    FROM 
-    #    document_urls d
-    #    INNER JOIN post_urls p on d.user_id = p.user_id
-    #    INNER JOIN user u ON d.user_id = u.id
-	#   ORDER BY d.created_at DESC;
-    # '''
-    #  ).fetchall()
-    
-    # for it in file_lists:
-    #     print (dict(it))
-    
+  
     return render_template('crud/download.html', file_lists=file_lists)
 
 
@@ -105,7 +85,7 @@ def download_file(id):
     document_item = get_download_path(id)
     return send_from_directory(current_app.config["UPLOAD_FOLDER"],document_item['document_name'])
     
-def get_post(id, check_author=True): # Util function 
+def get_post(id, check_author=True):
     db = get_db()
     post = db.execute('''SELECT 
                         p.id, 
