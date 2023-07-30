@@ -3,18 +3,19 @@ venv/
 *.pyc
 __pycache__/
 
+
 instance/
 *.ipynb
-
 
 .pytest_cache/
 .coverage
 htmlcov/
 
 dist/
+docs/
 build/
 *.egg-info/
-MANIFEST
-*.toml
+*.in
+
 
 *.xlsx

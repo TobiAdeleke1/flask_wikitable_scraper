@@ -1,4 +1,0 @@
-include webscrap_flask/schema.sql
-graft webscrap_flask/static
-graft webscrap_flask/templates
-global-exclude *.pyc
