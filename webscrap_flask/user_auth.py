@@ -69,7 +69,7 @@ def login():
 def load_current_user():
     user_id = session.get('user_id')
 
-    if user_id is None: 
+    if user_id is None:
         g.user = None
     else:
         db = get_db()

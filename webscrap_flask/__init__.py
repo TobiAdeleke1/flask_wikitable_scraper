@@ -32,8 +32,8 @@ def create_app(test_config=None) -> t.Any:
     from . import crud
     app.register_blueprint(crud.bp)
     app.add_url_rule('/', endpoint='index')
- 
+
     UPLOAD_FOLDER =  os.path.join(os.getcwd(),'webscrap_flask/utils/storage/sheets')
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
+     
     return app
